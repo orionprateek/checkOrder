@@ -76,7 +76,7 @@ const orderDb = [
     ],
     orderPlacementDate: 'September 12, 2017',
     value: '90 £',
-    status: 'closed'
+    status: 'open'
   }
 ]
 
