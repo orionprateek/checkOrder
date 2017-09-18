@@ -86,11 +86,22 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.post('/enquireOrder', function(req, res) {
-    var speech;
-    var intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
+app.get('/enquireOrder', function(req, res) {
+    var speech
+      , openCounter= 0
+      , intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
     if(intent === 'checkOrderDetails'){
-      speech = 'No Open Orders!'
+      orderDb.forEach(function(element){
+        if(element.status === 'open'){
+          openCounter ++;
+        }
+      })
+      if(openCounter == 0){
+        speech = 'No Open Orders!!'
+      }
+      else{
+        speech = openCounter + ' Open Orders!!'
+      }
     }
     else{
       speech = 'Sorry! Unable to Understand'
