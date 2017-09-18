@@ -10,7 +10,7 @@ const orderDb = [
     orderId: 'OR100001',
     productList: [
       {
-        productId: 'PR100001'
+        productId: 'PR100001',
         quantity: '2'
       }
     ],
@@ -22,11 +22,11 @@ const orderDb = [
     orderId: 'OR100002',
     productList: [
       {
-        productId: 'PR100001'
+        productId: 'PR100001',
         quantity: '2'
       },
       {
-        productId: 'PR100004'
+        productId: 'PR100004',
         quantity: '1'
       }
     ],
@@ -38,7 +38,7 @@ const orderDb = [
     orderId: 'OR100003',
     productList: [
       {
-        productId: 'PR100002'
+        productId: 'PR100002',
         quantity: '3'
       }
     ],
@@ -50,7 +50,7 @@ const orderDb = [
     orderId: 'OR100004',
     productList: [
       {
-        productId: 'PR100001'
+        productId: 'PR100001',
         quantity: '4'
       }
     ],
@@ -62,15 +62,15 @@ const orderDb = [
     orderId: 'OR100005',
     productList: [
       {
-        productId: 'PR100001'
+        productId: 'PR100001',
         quantity: '2'
       },
       {
-        productId: 'PR100002'
+        productId: 'PR100002',
         quantity: '3'
       },
       {
-        productId: 'PR100003'
+        productId: 'PR100003',
         quantity: '5'
       }
     ],
@@ -89,15 +89,13 @@ app.use(bodyParser.json());
 app.post('/enquireOrder', function(req, res) {
     var speech = 'Checking Req';
 
-    var reqText = req.query
-
     return res.json({
-        speech: req.query,
+        speech: speech,
         displayText: speech,
         source: 'webhook-orderApi-sample'
     });
 });
 
-app.listen((process.env.PORT || 8001), function() {
+app.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
