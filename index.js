@@ -104,7 +104,7 @@ app.post('/enquireOrder', function(req, res) {
       }
     }
     else{
-      speech = 'Sorry! Unable to Understand'
+      speech = 'Sorry! Unable to Understand what you said!'
     }
     //var tempData = req.query;
     return res.json({
