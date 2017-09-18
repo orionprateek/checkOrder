@@ -87,7 +87,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
-    var speech;
+    var speech = 'Basic Text';
     var intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
     if(intent === 'checkOrderDetails'){
       speech = 'No Open Orders!'
