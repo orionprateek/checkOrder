@@ -88,9 +88,9 @@ app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
     var speech = 'Checking Req';
-    var tempData = req.query;
+    //var tempData = req.query;
     return res.json({
-        speech: tempData,
+        speech: speech,
         displayText: speech,
         source: 'webhook-orderApi-sample'
     });
