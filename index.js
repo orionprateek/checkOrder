@@ -87,7 +87,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
-    var speech = 'Basic Text';
+    var speech;
     var intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
     if(intent === 'checkOrderDetails'){
       speech = 'No Open Orders!'
@@ -101,4 +101,8 @@ app.post('/enquireOrder', function(req, res) {
         displayText: speech,
         source: 'webhook-orderApi-sample'
     });
+});
+
+app.listen((process.env.PORT || 8000), function() {
+    console.log("Server up and listening");
 });
