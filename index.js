@@ -87,7 +87,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
-    var speech = 'Checking Req';
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.checkTest ? req.body.result.parameters.checkTest : "Seems like some problem.";
     //var tempData = req.query;
     return res.json({
         speech: speech,
