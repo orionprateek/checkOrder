@@ -86,7 +86,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.get('/enquireOrder', function(req, res) {
+app.post('/enquireOrder', function(req, res) {
     var speech
       , openCounter= 0
       , intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
