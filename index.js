@@ -87,15 +87,18 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.checkTest ? req.body.result.parameters.checkTest : "Seems like some problem.";
+    var speech;
+    var intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
+    if(intent === 'checkOrderDetails'){
+      speech = 'No Open Orders!'
+    }
+    else{
+      speech = 'Sorry! Unable to Understand'
+    }
     //var tempData = req.query;
     return res.json({
         speech: speech,
         displayText: speech,
         source: 'webhook-orderApi-sample'
     });
-});
-
-app.listen((process.env.PORT || 8000), function() {
-    console.log("Server up and listening");
 });
