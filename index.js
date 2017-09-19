@@ -9,11 +9,6 @@ function getOrderTime(diff){
   var currentDate = new Date()
   currentDate.setTime(currentDate.getTime() + (diff*60000));
   return currentDate;
-  // console.log('newDate : ', oldDate.toLocaleString());
-  // var currentDate = new Date();
-  // console.log('Current Date : ', currentDate);
-  // var TimeDiff = oldDate - currentDate;
-  // console.log('TimeDifference : ', TimeDiff);
 }
 
 
