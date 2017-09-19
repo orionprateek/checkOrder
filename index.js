@@ -135,11 +135,11 @@ app.post('/enquireOrder', function(req, res) {
         orderDb.forEach(function(element){
           if(element.status === 'open'){
             speech = speech + ' Order ' + tempCount + ' is for ' + element.value 
-                     + ' and it was placed on ' + element.orderPlacementDate + '.' 
-                     + ' Which one do you want?'
+                     + ' and it was placed on ' + element.orderPlacementDate + '.'                      
             tempCount++;
           }
         })
+        speech = speech + ' Which one do you want?'
       }
     }
     else{
