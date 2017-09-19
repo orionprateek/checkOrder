@@ -134,7 +134,7 @@ app.post('/enquireOrder', function(req, res) {
         var tempCount = 1;
         orderDb.forEach(function(element){
           if(element.status === 'open'){
-            speech = speech + 'Order ' + tempCount + ' is for ' + element.value + ' and it was placed on ' + element.orderPlacementDate + '.'
+            speech = speech + ' Order ' + tempCount + ' is for ' + element.value + ' and it was placed on ' + element.orderPlacementDate + '.'
             tempCount++;
           }
         })
