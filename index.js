@@ -128,7 +128,9 @@ app.post('/enquireOrder', function(req, res) {
         orderDb.forEach(function(element){
           if(element.status === 'open'){
             var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
-            speech = 'You have one open order only. It will be delivered to you in '+ Math.ceil(deliveryTimeRem) + ' minutes and will cost you ' + element.value
+            speech = 'You have one open order only. It will be delivered to you in '
+                      + Math.ceil(deliveryTimeRem) + ' minutes and will cost you '
+                      + element.value + '. Anything else I can help you with?'
           }
         })
       }
