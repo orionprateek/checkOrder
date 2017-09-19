@@ -71,7 +71,7 @@ const orderDb = [
     ],
     orderPlacementDate: 'September 2, 2017',
     value: '40 £',
-    status: 'closed',
+    status: 'open',
     deliveryTime: getOrderTime(30)
   },
   {
@@ -125,12 +125,19 @@ app.post('/enquireOrder', function(req, res) {
             var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
             speech = 'You have one open order only. It will be delivered to you in '
                       + Math.ceil(deliveryTimeRem) + ' minutes and will cost you '
-                      + element.value + '. Anything else I can help you with?'
+                      + element.value + '. Would you like me to help you with anything else?'
           }
         })
       }
       else{
-        speech = openCounter + ' Open Orders!!'
+        speech = 'You have ' + openCounter + ' open orders.'
+        var tempCount = 1;
+        orderDb.forEach(function(element){
+          if(element.status === 'open'){
+            speech = speech + 'Order ' + tempCount + ' is for ' + element.value + ' and it was placed on ' + element.orderPlacementDate + '.'
+            tempCount++;
+          }
+        })
       }
     }
     else{
