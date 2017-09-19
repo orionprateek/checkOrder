@@ -71,7 +71,7 @@ const orderDb = [
     ],
     orderPlacementDate: 'September 2, 2017',
     value: '40 £',
-    status: 'closed',
+    status: 'open',
     deliveryTime: getOrderTime(30)
   },
   {
@@ -124,8 +124,7 @@ app.post('/enquireOrder', function(req, res) {
           if(element.status === 'open'){
             var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
             speech = 'You have one open order only. It will be delivered to you in '
-                      + Math.ceil(deliveryTimeRem) + ' minutes and will cost you '
-                      + element.value + '. Would you like me to help you with anything else?'
+                      + Math.ceil(deliveryTimeRem) + '. Would you like me to help you with anything else?'
           }
         })
       }
