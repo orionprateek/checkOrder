@@ -97,7 +97,7 @@ app.post('/enquireOrder', function(req, res) {
         }
       })
       if(openCounter == 0){
-        speech = 'No Open Orders!!'
+        speech = 'You have no open orders. Anything else I can help you with?'
       }
       else{
         speech = openCounter + ' Open Orders!!'
