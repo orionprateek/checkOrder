@@ -90,7 +90,7 @@ app.post('/enquireOrder', function(req, res) {
     var speech
       , openCounter= 0
       , intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
-    if(intent === 'checkOrderDetails'){
+    if(intent === 'checkOrderStatus'){
       orderDb.forEach(function(element){
         if(element.status === 'open'){
           openCounter ++;
