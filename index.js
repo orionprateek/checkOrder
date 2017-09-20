@@ -154,7 +154,7 @@ app.post('/enquireOrder', function(req, res) {
             if(orderCounter == orderNo){
               var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
               speech = 'This order will be delivered to you in '
-                        + Math.ceil(deliveryTimeRem) + 'minutes . Would you like me to help you with anything else?'
+                        + Math.ceil(deliveryTimeRem) + ' minutes . Would you like me to help you with anything else?'
             }
           }
         })
