@@ -148,16 +148,17 @@ app.post('/enquireOrder', function(req, res) {
       }
       else{
         var orderCounter = 0;
-        orderDb.forEach(function(element){
-          if(element.status === 'open'){
+        for(var i = 0; i < orderDb.length; i++){
+          if(orderDb[i].status === 'open'){
             orderCounter++;
             if(orderCounter == orderNo){
-              var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
+              var deliveryTimeRem = (orderDb[i].deliveryTime - new Date())/60000;
               speech = 'It has left our store and will reach you in the next '
                         + Math.ceil(deliveryTimeRem) + ' minutes . Would you like me to help you with anything else?'
+              break;
             }
           }
-        })
+        }
       }
     }
     else if(intent === 'orderDate-status'){
@@ -173,6 +174,23 @@ app.post('/enquireOrder', function(req, res) {
           var tempOrderDateDay = orderDateDay.toLowerCase()
           var tempOrderDateMonth = orderDateMonth.toLowerCase()
           if((tempOrderPlacementDate.indexOf(tempOrderDateDay) !== -1) && (tempOrderPlacementDate.indexOf(tempOrderDateMonth) !== -1)){
+            var deliveryTimeRem = (orderDb[i].deliveryTime - new Date())/60000;
+            speech = 'It has left our store and will reach you in the next '
+                      + Math.ceil(deliveryTimeRem) + ' minutes . Would you like me to help you with anything else?'
+            break;
+          }
+        }
+      }
+    }
+  else if(intent === 'orderCost-status'){
+      var orderCost = req.body.result.parameters.orderCost ? req.body.result.parameters.orderCost : 'noOrderCost'
+      if(orderCost === 'noOrderCost'){
+        speech = 'Sorry! Not able to help you this time. Do you want me to help you with anything else?'
+      }
+      else{
+        var orderCounter = 0;
+        for(var i = 0; i < orderDb.length; i++){
+          if(orderDb[i].value === orderCost){
             var deliveryTimeRem = (orderDb[i].deliveryTime - new Date())/60000;
             speech = 'It has left our store and will reach you in the next '
                       + Math.ceil(deliveryTimeRem) + ' minutes . Would you like me to help you with anything else?'
