@@ -141,6 +141,26 @@ app.post('/enquireOrder', function(req, res) {
         speech = speech + ' Which one do you want?'
       }
     }
+    else if(intent === 'orderValue-status'){
+      var orderNo = req.body.result.parameters.orderN ? parseInt(req.body.result.parameters.orderN) : 'noOrderNumber'
+      if(orderNo === 'noOrderNumber'){
+        speech = 'Sorry! Not able to help you this time. Do you want me to help you with anythng else? ' + orderNo
+      }
+      else{
+        var orderCounter = 0;
+        orderDb.forEach(function(element){
+          if(element.status === 'open'){
+            orderCounter++;
+            if(orderCounter == orderNo){
+              var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
+              speech = 'This order will be delivered to you in '
+                        + Math.ceil(deliveryTimeRem) + 'minutes . Would you like me to help you with anything else? ' + orderNo
+              break;
+            }
+          }
+        })
+      }
+    }
     else{
       speech = 'Sorry! Unable to Understand'
     }
