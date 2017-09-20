@@ -163,12 +163,16 @@ app.post('/enquireOrder', function(req, res) {
     else if(intent === 'orderDate-status'){
       var orderDateDay = req.body.result.parameters.orderDateDay ? wordsToNumbers(req.body.result.parameters.orderDateDay) : 'noOrderDateDay'
       var orderDateMonth = req.body.result.parameters.orderDateMonth ? req.body.result.parameters.orderDateMonth : 'noOrderDateMonth'
-      if(orderDateDay === 'noOrderNumber' && orderDateMonth === 'noOrderDateMonth'){
+      if(orderDateDay === 'noOrderDateDay' && orderDateMonth === 'noOrderDateMonth'){
         speech = 'Sorry! Not able to help you this time. Do you want me to help you with anything else?'
       }
       else{
-        for(i = 0; i < orderDb.length; i++){
-          if((orderDb[i].orderPlacementDate.indexOf(orderDateDay) !== -1) && (orderDb[i].orderPlacementDate.indexOf(orderDateMonth) !== -1)){
+        console.log('Inside else');
+        for(var i = 0; i < orderDb.length; i++){
+          var tempOrderPlacementDate = orderDb[i].orderPlacementDate.toLowerCase()
+          var tempOrderDateDay = orderDateDay.toLowerCase()
+          var tempOrderDateMonth = orderDateMonth.toLowerCase()
+          if((tempOrderPlacementDate.indexOf(tempOrderDateDay) !== -1) && (tempOrderPlacementDate.indexOf(tempOrderDateMonth) !== -1)){
             var deliveryTimeRem = (orderDb[i].deliveryTime - new Date())/60000;
             speech = 'It has left our store and will reach you in the next '
                       + Math.ceil(deliveryTimeRem) + ' minutes . Would you like me to help you with anything else?'
