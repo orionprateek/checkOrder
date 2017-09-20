@@ -123,8 +123,8 @@ app.post('/enquireOrder', function(req, res) {
         orderDb.forEach(function(element){
           if(element.status === 'open'){
             var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
-            speech = 'You have one open order only. It will be delivered to you in '
-                      + Math.ceil(deliveryTimeRem) + '. Would you like me to help you with anything else?'
+            speech = 'It has left our store and will reach you in the next '
+                      + Math.ceil(deliveryTimeRem) + ' minutes. Would you like me to help you with anything else?'
           }
         })
       }
@@ -153,7 +153,7 @@ app.post('/enquireOrder', function(req, res) {
             orderCounter++;
             if(orderCounter == orderNo){
               var deliveryTimeRem = (element.deliveryTime - new Date())/60000;
-              speech = 'This order will be delivered to you in '
+              speech = 'It has left our store and will reach you in the next '
                         + Math.ceil(deliveryTimeRem) + ' minutes . Would you like me to help you with anything else?'
             }
           }
