@@ -2,7 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const { wordsToNumbers } = require('words-to-numbers');
 const app = express();
 
 function getOrderTime(diff){
@@ -142,7 +142,7 @@ app.post('/enquireOrder', function(req, res) {
       }
     }
     else if(intent === 'orderNo-status'){
-      var orderNo = req.body.result.parameters.orderN ? parseInt(req.body.result.parameters.orderN) : 'noOrderNumber'
+      var orderNo = req.body.result.parameters.orderN ? parseInt(wordsToNumbers(req.body.result.parameters.orderN)) : 'noOrderNumber'
       if(orderNo === 'noOrderNumber'){
         speech = 'Sorry! Not able to help you this time. Do you want me to help you with anythng else?'
       }
