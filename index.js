@@ -57,7 +57,7 @@ const orderDb = [
     ],
     orderPlacementDate: 'August 15, 2017',
     value: '15 £',
-    status: 'closed',
+    status: 'open',
     deliveryTime: getOrderTime(25)
   },
   {
