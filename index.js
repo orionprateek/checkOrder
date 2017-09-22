@@ -108,6 +108,7 @@ app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
     console.log('This is request', req.body.originalRequest.data)
+    console.log('This is surface detail: ', req.body.originalRequest.data.surface)
     var speech
       , openCounter = 0
       , intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
