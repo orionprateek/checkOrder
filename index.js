@@ -107,9 +107,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
-    console.log('This is request', req.body.originalRequest.data)
+    console.log('This is request', req.body)
     var accessToken = req.body.originalRequest.data.user.access_token ? req.body.originalRequest.data.user.access_token : 'noToken'
-    console.log('This is accessToken detail: ', accessToken)
+    //console.log('This is accessToken detail: ', accessToken)
     var speech
       , openCounter = 0
       , intent = req.body.result && req.body.result.metadata.intentName ? req.body.result.metadata.intentName : "noIntent";
