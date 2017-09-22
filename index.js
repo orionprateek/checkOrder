@@ -107,7 +107,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/enquireOrder', function(req, res) {
-    console.log('This is request', req.body.originalRequest.data)
+//     console.log('This is request', req.body.originalRequest.data)
 //     var accessToken = req.body.originalRequest.data.user.access_token ? req.body.originalRequest.data.user.access_token : 'noToken'
 //     console.log('This: ', req.body.originalRequest.data.inputs[0].rawInputs)
 //     console.log('This: ', req.body.originalRequest.data.inputs[0].arguments)
